@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Browse all UNO game guides, tutorials, and strategy articles. Find tips, tricks, and advanced techniques to improve your game.">
+    <title>Game Guides and Tutorials | No Mercy Cards</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Guides Page Specific Styles */
+        .guides-container {
+            max-width: var(--max-width);
+            margin: 100px auto 60px;
+            padding: 0 20px;
+        }
+
+        .guides-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .guides-header h1 {
+            font-size: 42px;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+
+        .guides-header p {
+            font-size: 18px;
+            color: var(--secondary-color);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .filter-container {
+            margin-bottom: 30px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .filter-tag {
+            padding: 8px 16px;
+            border: 2px solid var(--primary-color);
+            border-radius: 20px;
+            cursor: pointer;
+            background: none;
+            color: var(--primary-color);
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .filter-tag.active {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .guides-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .guide-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .guide-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .guide-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .guide-card-content {
+            padding: 20px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .guide-card-content h2 {
+            font-size: 24px;
+            margin-bottom: 10px;
+            color: var(--primary-color);
+            text-align: left;
+        }
+
+        .guide-meta {
+            font-size: 14px;
+            color: var(--secondary-color);
+            margin-bottom: 15px;
+        }
+
+        .guide-excerpt {
+            color: var(--text-color);
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+
+        .guide-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .guide-tag {
+            font-size: 12px;
+            padding: 4px 12px;
+            background: var(--light-bg);
+            color: var(--secondary-color);
+            border-radius: 15px;
+        }
+
+        .read-more {
+            display: inline-block;
+            padding: 8px 20px;
+            background: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+            text-align: center;
+        }
+
+        .read-more:hover {
+            background: var(--secondary-color);
+        }
+
+        .no-results {
+            text-align: center;
+            padding: 40px;
+            color: var(--secondary-color);
+            font-size: 18px;
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .guides-header h1 {
+                font-size: 32px;
+            }
+
+            .guides-header p {
+                font-size: 16px;
+            }
+
+            .guide-card-content h2 {
+                font-size: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">No Mercy Cards</div>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="index.html#play">Play Game</a>
+                <a href="index.html#howto">How to Play</a>
+                <a href="index.html#faq">FAQ</a>
+                <a href="guides.html">Guides</a>
+            </div>
+            <div class="nav-right">
+                <div class="theme-toggle"></div>
+                <div class="lang-toggle"></div>
+            </div>
+            <button class="mobile-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Guides Content -->
+    <main class="guides-container">
+        <div class="breadcrumb">
+            <a href="index.html">Home</a>
+            <span>/</span>
+            <span>All Guides</span>
+        </div>
+
+        <div class="guides-header">
+            <h1>Game Guides & Tutorials</h1>
+            <p>Master the game with our comprehensive collection of guides, strategies, and expert tips.</p>
+        </div>
+
+        <div class="filter-container">
+            <button class="filter-tag active" data-tag="all">All</button>
+            <button class="filter-tag" data-tag="rules">Rules</button>
+            <button class="filter-tag" data-tag="strategy">Strategy</button>
+            <button class="filter-tag" data-tag="beginners">Beginners</button>
+            <button class="filter-tag" data-tag="advanced">Advanced</button>
+            <button class="filter-tag" data-tag="competitive">Competitive</button>
+        </div>
+
+        <div class="guides-grid">
+            <article class="guide-card" data-tags="comparison,rules,variants,strategy">
+                <img src="images/uno-comparison.jpg" alt="UNO No Mercy vs Classic UNO comparison">
+                <div class="guide-card-content">
+                    <h2>UNO No Mercy vs Classic UNO: Key Differences</h2>
+                    <div class="guide-meta">
+                        <span><i class="far fa-calendar"></i> March 15, 2024</span>
+                        <span><i class="far fa-clock"></i> 10 min read</span>
+                    </div>
+                    <p class="guide-excerpt">Discover how UNO No Mercy differs from Classic UNO. Learn about new mechanics, special cards, and unique rules that make this variant more intense.</p>
+                    <div class="guide-tags">
+                        <span class="guide-tag">Comparison</span>
+                        <span class="guide-tag">Rules</span>
+                        <span class="guide-tag">Variants</span>
+                        <span class="guide-tag">Strategy</span>
+                    </div>
+                    <a href="articles/uno-no-mercy-vs-classic.html" class="read-more">Read More</a>
+                </div>
+            </article>
+
+            <article class="guide-card" data-tags="advanced,strategy,competitive,mastery">
+                <img src="images/uno-mastery.jpg" alt="Advanced UNO No Mercy mastery guide">
+                <div class="guide-card-content">
+                    <h2>Mastering UNO No Mercy: Advanced Tactics</h2>
+                    <div class="guide-meta">
+                        <span><i class="far fa-calendar"></i> March 15, 2024</span>
+                        <span><i class="far fa-clock"></i> 15 min read</span>
+                    </div>
+                    <p class="guide-excerpt">Master advanced tactics, psychological warfare, and tournament-level strategies. Learn how to dominate in UNO No Mercy with expert tips.</p>
+                    <div class="guide-tags">
+                        <span class="guide-tag">Advanced</span>
+                        <span class="guide-tag">Strategy</span>
+                        <span class="guide-tag">Competitive</span>
+                        <span class="guide-tag">Mastery</span>
+                    </div>
+                    <a href="articles/mastering-uno-no-mercy.html" class="read-more">Read More</a>
+                </div>
+            </article>
+
+            <article class="guide-card" data-tags="rules,strategy,beginners">
+                <img src="images/uno-rules-guide.jpg" alt="Complete UNO rules guide">
+                <div class="guide-card-content">
+                    <h2>Complete UNO Rules Guide</h2>
+                    <div class="guide-meta">
+                        <span><i class="far fa-calendar"></i> March 15, 2024</span>
+                        <span><i class="far fa-clock"></i> 8 min read</span>
+                    </div>
+                    <p class="guide-excerpt">Master the complete rules of UNO card game. Learn about special cards, scoring, and basic strategies to dominate your next game.</p>
+                    <div class="guide-tags">
+                        <span class="guide-tag">Rules</span>
+                        <span class="guide-tag">Strategy</span>
+                        <span class="guide-tag">Beginners</span>
+                    </div>
+                    <a href="articles/uno-rules-complete-guide.html" class="read-more">Read More</a>
+                </div>
+            </article>
+
+            <article class="guide-card" data-tags="rules,advanced,strategy,variants">
+                <img src="images/no-mercy-rules.jpg" alt="No Mercy UNO variant rules">
+                <div class="guide-card-content">
+                    <h2>No Mercy UNO: Hardcore Rules Variant</h2>
+                    <div class="guide-meta">
+                        <span><i class="far fa-calendar"></i> March 15, 2024</span>
+                        <span><i class="far fa-clock"></i> 10 min read</span>
+                    </div>
+                    <p class="guide-excerpt">Take your UNO game to the next level with these intense rule modifications. Learn advanced strategies for the most challenging variant.</p>
+                    <div class="guide-tags">
+                        <span class="guide-tag">Rules</span>
+                        <span class="guide-tag">Advanced</span>
+                        <span class="guide-tag">Strategy</span>
+                        <span class="guide-tag">Variants</span>
+                    </div>
+                    <a href="articles/uno-no-mercy-rules.html" class="read-more">Read More</a>
+                </div>
+            </article>
+
+            <article class="guide-card" data-tags="basics,strategy,cards">
+                <img src="images/uno-deck-composition.jpg" alt="UNO deck composition guide">
+                <div class="guide-card-content">
+                    <h2>How Many Cards in UNO?</h2>
+                    <div class="guide-meta">
+                        <span><i class="far fa-calendar"></i> March 15, 2024</span>
+                        <span><i class="far fa-clock"></i> 7 min read</span>
+                    </div>
+                    <p class="guide-excerpt">Understanding the composition of an UNO deck and why it matters for strategic gameplay. Learn about card distribution and probabilities.</p>
+                    <div class="guide-tags">
+                        <span class="guide-tag">Basics</span>
+                        <span class="guide-tag">Strategy</span>
+                        <span class="guide-tag">Cards</span>
+                    </div>
+                    <a href="articles/how-many-cards-in-uno.html" class="read-more">Read More</a>
+                </div>
+            </article>
+
+            <article class="guide-card" data-tags="advanced,strategy,competitive,tournament">
+                <img src="images/uno-game-rules.jpg" alt="Advanced UNO strategies">
+                <div class="guide-card-content">
+                    <h2>UNO Game Rules: Expert Tips</h2>
+                    <div class="guide-meta">
+                        <span><i class="far fa-calendar"></i> March 15, 2024</span>
+                        <span><i class="far fa-clock"></i> 12 min read</span>
+                    </div>
+                    <p class="guide-excerpt">Master advanced UNO techniques and strategies for competitive play. Learn expert-level tactics and psychological gameplay.</p>
+                    <div class="guide-tags">
+                        <span class="guide-tag">Advanced</span>
+                        <span class="guide-tag">Strategy</span>
+                        <span class="guide-tag">Competitive</span>
+                        <span class="guide-tag">Tournament</span>
+                    </div>
+                    <a href="articles/uno-game-rules.html" class="read-more">Read More</a>
+                </div>
+            </article>
+        </div>
+
+        <div class="no-results">
+            <h3>No guides found for the selected filter.</h3>
+            <p>Try selecting a different category or view all guides.</p>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Game Info</h3>
+                    <p>No Mercy Cards is a multiplayer card game that brings the classic experience to your browser.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Useful Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="index.html#play">Play Game</a></li>
+                        <li><a href="index.html#howto">How to Play</a></li>
+                        <li><a href="index.html#faq">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Legal</h3>
+                    <ul>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Cookie Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 nomercycards.app - All rights reserved</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Article filtering functionality
+        const filterTags = document.querySelectorAll('.filter-tag');
+        const guideCards = document.querySelectorAll('.guide-card');
+        const noResults = document.querySelector('.no-results');
+
+        filterTags.forEach(tag => {
+            tag.addEventListener('click', () => {
+                // Update active state of filter tags
+                filterTags.forEach(t => t.classList.remove('active'));
+                tag.classList.add('active');
+
+                const selectedTag = tag.dataset.tag;
+                let visibleCards = 0;
+
+                guideCards.forEach(card => {
+                    const cardTags = card.dataset.tags.split(',');
+                    if (selectedTag === 'all' || cardTags.includes(selectedTag)) {
+                        card.style.display = 'block';
+                        visibleCards++;
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+
+                // Show/hide no results message
+                noResults.style.display = visibleCards === 0 ? 'block' : 'none';
+            });
+        });
+    </script>
+</body>
+</html> 

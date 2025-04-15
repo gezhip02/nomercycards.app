@@ -1,49 +1,230 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>我的 Cloudflare Page</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      padding: 2rem;
-      margin: 0;
-      background-color: #f9f9f9;
-      color: #333;
-      line-height: 1.6;
-    }
-    header, footer {
-      text-align: center;
-      padding: 1rem 0;
-      background-color: #fff;
-      border-bottom: 1px solid #ddd;
-      margin-bottom: 2rem;
-    }
-    footer {
-      border-top: 1px solid #ddd;
-      border-bottom: none;
-      margin-top: 2rem;
-    }
-    main {
-      max-width: 800px;
-      margin: 0 auto;
-      background-color: #fff;
-      padding: 1rem;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>No Mercy Cards - Play Online Card Game</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-  <header>
-    <h1>欢迎访问我的 Cloudflare Page</h1>
-  </header>
-  <main>
-    <p>这是一个简单的静态 HTML 页面示例，你可以在这里部署你的网站内容。</p>
-    <p>将此项目连接到 Cloudflare Pages 后，每次更新提交你的代码即可自动部署新版本。</p>
-  </main>
-  <footer>
-    <p>&copy; 2025 我的公司. 保留所有权利.</p>
-  </footer>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">No Mercy Cards</div>
+            <div class="nav-links">
+                <a href="#home">Home</a>
+                <a href="#play">Play Game</a>
+                <a href="#howto">How to Play</a>
+                <a href="#faq">FAQ</a>
+                <a href="#guides">Guides</a>
+            </div>
+            <div class="nav-right">
+                <!-- Placeholder for theme and language toggles -->
+                <div class="theme-toggle"></div>
+                <div class="lang-toggle"></div>
+            </div>
+            <button class="mobile-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <h1>No Mercy Cards</h1>
+            <p>Experience 'Four Colors' - the online multiplayer card game inspired by classic UNO rules. While our site is called No Mercy Cards, we proudly feature the original Four Colors game that lets you challenge players worldwide in this fast-paced, strategic color-matching adventure!</p>
+        </div>
+    </section>
+
+    <!-- Game Section -->
+    <section id="play" class="game-section">
+        <div class="container">
+            <h2>Play No Mercy Cards Game</h2>
+            <div class="game-container">
+                <iframe src="https://games.crazygames.com/en_US/uno-online/index.html?skipPrerollFirstSessionExp25=&v=1.329" frameborder="0" allowfullscreen></iframe>
+                <div class="game-social-share">
+                    <div class="share-buttons">
+                        <button class="share-btn twitter"><i class="fab fa-twitter"></i> Twitter</button>
+                        <button class="share-btn facebook"><i class="fab fa-facebook"></i> Facebook</button>
+                        <button class="share-btn linkedin"><i class="fab fa-linkedin"></i> LinkedIn</button>
+                        <button class="share-btn reddit"><i class="fab fa-reddit"></i> Reddit</button>
+                        <button class="share-btn tiktok"><i class="fab fa-tiktok"></i> TikTok</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features">
+        <div class="container">
+            <h2>Game Features</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <i class="fas fa-users"></i>
+                    <h3>Multiplayer Action</h3>
+                    <p>Challenge players worldwide in real-time matches</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-bolt"></i>
+                    <h3>Fast-Paced Gameplay</h3>
+                    <p>Quick matches with exciting twists and turns</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-trophy"></i>
+                    <h3>Competitive Rankings</h3>
+                    <p>Climb the leaderboard and prove your skills</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-mobile-alt"></i>
+                    <h3>Play Anywhere</h3>
+                    <p>Fully responsive design for all devices</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How to Play Section -->
+    <section id="howto" class="how-to-play">
+        <div class="container">
+            <h2>How to Play No Mercy Cards</h2>
+            <div class="instructions">
+                <div class="instruction-block">
+                    <h3>Basic Rules</h3>
+                    <p>Match cards by color or number. Be the first to get rid of all your cards to win! Don't forget to press "1" when you have one card left!</p>
+                </div>
+                <div class="instruction-block">
+                    <h3>Special Cards</h3>
+                    <ul>
+                        <li>Skip Card - Makes the next player miss their turn</li>
+                        <li>Reverse - Changes the direction of play</li>
+                        <li>Draw Two - Next player draws 2 cards and misses turn</li>
+                        <li>Wild Card - Choose the next color to play</li>
+                        <li>Wild Draw Four - Choose color and next player draws 4 cards</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="faq">
+        <div class="container">
+            <h2>Frequently Asked Questions</h2>
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question">How many players can join a game?</div>
+                    <div class="faq-answer">You can play with 2-4 players in each game.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">Is the game free to play?</div>
+                    <div class="faq-answer">Yes, No Mercy Cards is completely free to play in your web browser!</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">Can I play on mobile devices?</div>
+                    <div class="faq-answer">Yes, the game is fully responsive and playable on all devices with a web browser.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">How many cards are in a deck?</div>
+                    <div class="faq-answer">There are 108 cards in total, including number cards and special action cards.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">What happens if I forget to call "One" with one card left?</div>
+                    <div class="faq-answer">You'll receive a penalty of two additional cards if you don't press "1" when you have one card remaining.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">Are there rankings or leaderboards?</div>
+                    <div class="faq-answer">Yes, you can compete for positions on our global leaderboard and track your progress.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Guides Section -->
+    <section id="guides" class="guides">
+        <div class="container">
+            <h2>Latest Game Guides</h2>
+            <div class="guides-preview">
+                <div class="guide-card">
+                    <img src="images/uno-comparison.jpg" alt="UNO No Mercy vs Classic UNO comparison">
+                    <div class="guide-content">
+                        <h3>UNO No Mercy vs Classic UNO: Key Differences</h3>
+                        <p>Discover how UNO No Mercy differs from Classic UNO. Learn about new mechanics, special cards, and unique rules that make this variant more intense.</p>
+                        <div class="guide-meta">
+                            <span><i class="far fa-clock"></i> 10 min read</span>
+                            <a href="articles/uno-no-mercy-vs-classic.html" class="read-more">Read More</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="guide-card">
+                    <img src="images/uno-mastery.jpg" alt="Advanced UNO No Mercy mastery guide">
+                    <div class="guide-content">
+                        <h3>Mastering UNO No Mercy: Advanced Tactics</h3>
+                        <p>Master advanced tactics, psychological warfare, and tournament-level strategies. Learn how to dominate in UNO No Mercy with expert tips.</p>
+                        <div class="guide-meta">
+                            <span><i class="far fa-clock"></i> 15 min read</span>
+                            <a href="articles/mastering-uno-no-mercy.html" class="read-more">Read More</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="guide-card">
+                    <img src="images/no-mercy-rules.jpg" alt="No Mercy UNO variant rules">
+                    <div class="guide-content">
+                        <h3>No Mercy UNO: Hardcore Rules Variant</h3>
+                        <p>Take your UNO game to the next level with these intense rule modifications. Learn advanced strategies for the most challenging variant.</p>
+                        <div class="guide-meta">
+                            <span><i class="far fa-clock"></i> 10 min read</span>
+                            <a href="articles/uno-no-mercy-rules.html" class="read-more">Read More</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="guides-cta">
+                <a href="guides.html" class="view-all-guides">View All Guides</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Game Info</h3>
+                    <p>No Mercy Cards is a multiplayer card game that brings the classic experience to your browser.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Useful Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="#play">Play Game</a></li>
+                        <li><a href="#howto">How to Play</a></li>
+                        <li><a href="#faq">FAQ</a></li>
+                        <li><a href="guides.html">Guides</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Legal</h3>
+                    <ul>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Cookie Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 nomercycards.app - All rights reserved</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
 </body>
-</html>
+</html> 
