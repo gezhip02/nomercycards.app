@@ -54,41 +54,73 @@ fullscreenBtn.addEventListener('click', () => {
 
 // Social Share Functionality
 document.addEventListener('DOMContentLoaded', function() {
+    console.log('DOM Content Loaded - Attempting to bind share buttons');
     const shareButtons = document.querySelectorAll('.share-buttons .share-btn');
+    console.log('Found share buttons:', shareButtons.length);
     
-    shareButtons.forEach(button => {
+    shareButtons.forEach((button, index) => {
+        console.log(`Setting up listener for button ${index}:`, button.className);
         button.addEventListener('click', function(e) {
+            console.log(`Button clicked: ${button.className}`);
             e.preventDefault();
-            const url = encodeURIComponent(window.location.href);
-            const title = encodeURIComponent(document.title);
+            
+            // Get current page info
+            const url = window.location.href;
+            const encodedUrl = encodeURIComponent(url);
+            const title = encodeURIComponent(document.title || 'No Mercy Cards - Play Online Card Game');
+            console.log('Sharing URL:', url);
+            
             let shareUrl;
             
+            // Simple sharing URLs without complex parameters
             if (button.classList.contains('twitter')) {
-                shareUrl = `https://twitter.com/intent/tweet?url=${url}&text=${title}`;
+                shareUrl = `https://twitter.com/share?url=${encodedUrl}`;
             } else if (button.classList.contains('facebook')) {
-                shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${url}`;
+                shareUrl = `https://www.facebook.com/sharer.php?u=${encodedUrl}`;
             } else if (button.classList.contains('linkedin')) {
-                shareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${url}`;
+                shareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}`;
             } else if (button.classList.contains('reddit')) {
-                shareUrl = `https://reddit.com/submit?url=${url}&title=${title}`;
+                shareUrl = `https://reddit.com/submit?url=${encodedUrl}`;
             } else if (button.classList.contains('tiktok')) {
-                shareUrl = `https://www.tiktok.com/share?url=${url}`;
+                shareUrl = `https://www.tiktok.com/share?url=${encodedUrl}`;
             }
             
+            console.log('Generated share URL:', shareUrl);
+            
             if (shareUrl) {
-                const width = 600;
-                const height = 400;
-                const left = (window.innerWidth - width) / 2;
-                const top = (window.innerHeight - height) / 2;
+                // Open share window
+                try {
+                    const shareWindow = window.open(shareUrl, '_blank', 'width=600,height=400,location=0,menubar=0');
+                    console.log('Share window opened:', shareWindow);
+                    
+                    if (!shareWindow || shareWindow.closed || typeof shareWindow.closed === 'undefined') {
+                        console.error('Popup was blocked by browser');
+                        alert('Your browser blocked the share popup. Please allow popups for this site.');
+                    }
+                } catch (err) {
+                    console.error('Error opening share window:', err);
+                }
                 
-                window.open(
-                    shareUrl,
-                    'share-window',
-                    `width=${width},height=${height},left=${left},top=${top},toolbar=0,status=0`
-                );
+                // Visual feedback
+                button.style.backgroundColor = '#4CAF50';
+                setTimeout(() => {
+                    button.style.backgroundColor = '';
+                }, 1000);
             }
         });
     });
+    
+    // Also add click event to the parent div as a fallback
+    const shareButtonsContainer = document.querySelector('.share-buttons');
+    if (shareButtonsContainer) {
+        console.log('Setting up delegation on share buttons container');
+        shareButtonsContainer.addEventListener('click', function(e) {
+            const button = e.target.closest('.share-btn');
+            if (button) {
+                console.log('Delegation caught click on:', button.className);
+            }
+        });
+    }
 });
 
 // Smooth scroll for navigation links
